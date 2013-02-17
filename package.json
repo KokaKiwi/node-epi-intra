@@ -1,0 +1,15 @@
+{
+  "name": "epi-intra",
+  "version": "0.1.0",
+  "author": "Guillaume H. <hervie_g@epitech.eu>",
+  "main": "./index.js",
+  "dependencies": {
+    "restler": "2.x",
+    "underscore": "1.4.x",
+    "cheerio": "0.10.x",
+    "cookie": "0.0.5"
+  },
+  "devDependencies": {
+    "eyes": "*"
+  }
+}
