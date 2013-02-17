@@ -46,6 +46,7 @@ sess.login('kiwi', function(err) {
         console.error(err);
     }
 });
+```
 
 ### .notes(who, callback)
 Get who's notes from his rapport page.
