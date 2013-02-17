@@ -69,7 +69,7 @@ sess.notes('noel_p', function(notes) {
 Get who's modules results from his rapport page.
 
 ```js
-sess.modules('ns', function(m) {
+sess.modules('ns', function(modules) {
     // Mod, mod, module!
 });
 ```
