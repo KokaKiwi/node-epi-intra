@@ -84,3 +84,44 @@ EpiSession.prototype.notes = function(who, callback)
         callback(notes);
     });
 };
+
+EpiSession.prototype.modules = function(who, callback)
+{
+    var self = this;
+    var options = {
+        section: 'etudiant',
+        page: 'rapport',
+        login: who
+    };
+    this.get('/', options, function(data, res) {
+        var $ = cheerio.load(data);
+        var rows = $('div#div9 > table > tr');
+        var modules = [];
+        rows.each(function(i, row) {
+            var cols = $(this).find('td');
+            var reward = $(this).find('td > img', 0);
+
+            if (cols.length == 8)
+            {
+                var _module = {
+                    code: cols.eq(0).text().trim(),
+                    name: cols.eq(1).text().trim(),
+                    profs: cols.eq(2).text().trim().split(/[,;]/),
+                    credits: parseInt(cols.eq(3).text().trim()),
+                    infos: cols.eq(4).text().trim(),
+                    status: cols.eq(5).text().split('/')[0].trim(),
+                    grade: cols.eq(5).text().split('/')[1].trim(),
+                    reward: null
+                };
+
+                if (reward.length > 0)
+                {
+                    _module.reward = reward.attr('title');
+                }
+
+                modules.push(_module);
+            }
+        });
+        callback(modules);
+    });
+};
